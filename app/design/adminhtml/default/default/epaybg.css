@@ -1,0 +1,8 @@
+h3.epaybg-header { background:url(images/epaybg/epaybg-section.png) no-repeat 0 0; height:0; overflow:hidden; padding:32px 0 0; width:75px; }
+
+ul.tabs a.epaybg-section,
+ul.tabs a.epaybg-section:hover { background:url(images/tabs_span_bg.gif) repeat-x 0 100%; border-bottom:none; padding:0.2em 0.5em 0.2em 1.5em; }
+ul.tabs a.epaybg-section:hover { background-color:#d8e6e6; }
+ul.tabs a.epaybg-section.active, ul.tabs a.paypal-section.active:hover { background-color:#fff; }
+ul.tabs a.epaybg-section span,
+ul.tabs a.epaybg-section:hover span { background:url(images/epaybg/epaybg-section.png) no-repeat 0 0; height:0; overflow:hidden; padding:32px 0 0; width:75px; }

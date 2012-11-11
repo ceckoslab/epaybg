@@ -1,0 +1,49 @@
+<?php 
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   CeckosLab
+ * @package    CeckosLab_Epaybg
+ * @copyright  Copyright (c) 2011 Tsvetan Stoychev
+ * @copyright  Copyright (c) 2011  (http://www.ceckoslab.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php 
+	$orders = $this->getOrders();
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('EasePay | B-Pay orders') ?></h1>
+</div>
+<?php if($orders->getSize()): ?>
+<table class="data-table" id="my-orders-table" >
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Order #') ?></th>
+            <th><?php echo $this->__('10-digits number needed for payment'); ?></th>
+            <th><?php echo $this->__('Status'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($orders as $order): ?>
+        <tr>
+            <td><?php echo $order->getOrderIncrementId() ?>&nbsp;</td>
+        	<td><?php echo $order->getIdn() ?></td>
+        	<td><?php echo $order->getStatus() ?></td>
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-orders-table')</script>
+<?php else: ?>
+    <p><?php echo $this->__('You have placed no EasePay | B-Pay orders yet.') ?></p>
+<?php endif ?>
+<div class="buttons-set">
+    <p class="back-link"><a href="<?php echo $this->getUrl('customer/account') ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+</div>

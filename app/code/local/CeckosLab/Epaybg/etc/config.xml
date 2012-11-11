@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   CeckosLab
+ * @package    CeckosLab_Epaybg
+ * @copyright  Copyright (c) 2011 Tsvetan Stoychev
+ * @copyright  Copyright (c) 2011  (http://www.ceckoslab.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+	<modules>
+		<CeckosLab_Epaybg>
+			<version>2.0.1</version>
+		</CeckosLab_Epaybg>
+	</modules>
+	<global>
+		<blocks>
+			<epaybg>
+				<class>CeckosLab_Epaybg_Block</class>
+			</epaybg>
+		</blocks>
+		<helpers>
+			<epaybg>
+				<class>CeckosLab_Epaybg_Helper</class>
+			</epaybg>
+		</helpers>
+		<models>
+			<epaybg>
+				<class>CeckosLab_Epaybg_Model</class>
+				<resourceModel>epaybg_mysql4</resourceModel>
+			</epaybg>
+			<epaybg_mysql4>
+				<class>CeckosLab_Epaybg_Model_Mysql4</class>
+				<entities>
+					<payment>
+						<table>epaybg_payments</table>
+					</payment>
+				</entities>
+			</epaybg_mysql4>
+		</models>
+		<events>
+			<before_epaybg_redirect>
+				<observers>
+					<before_redirect_observer>
+						<type>singleton</type>
+						<class>epaybg/observer</class>
+						<method>log_redirect_method</method>
+					</before_redirect_observer>
+				</observers>
+			</before_epaybg_redirect>
+			<after_epaybg_idn_received>
+				<observers>
+					<idn_observer>
+						<type>singleton</type>
+						<class>epaybg/observer</class>
+						<method>log_noredirect_method</method>
+					</idn_observer>
+				</observers>
+			</after_epaybg_idn_received>
+			<epaybg_idn_api_error>
+				<observers>
+					<idn_error_observer>
+						<type>singleton</type>
+						<class>epaybg/observer</class>
+						<method>log_api_error_noredirect_method</method>
+					</idn_error_observer>
+				</observers>
+			</epaybg_idn_api_error>
+			<epaybg_connection_error>
+				<observers>
+					<idn_connection_error_observer>
+						<type>singleton</type>
+						<class>epaybg/observer</class>
+						<method>log_connection_error_noredirect_method</method>
+					</idn_connection_error_observer>
+				</observers>
+			</epaybg_connection_error>
+			<after_epaybg_payment_received>
+				<observers>
+					<response_observer>
+						<type>singleton</type>
+						<class>epaybg/observer</class>
+						<method>log_epaybg_invoice</method>
+					</response_observer>
+				</observers>
+			</after_epaybg_payment_received>
+		</events>
+		<resources>
+			<epaybg_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</epaybg_write>
+			<epaybg_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</epaybg_read>
+			<epaybg_setup>
+                <setup>
+                    <module>CeckosLab_Epaybg</module>
+                </setup>
+            </epaybg_setup>
+		</resources>
+        <payment>
+            <groups>
+                <epaybg>ePay Bg</epaybg>
+            </groups>
+        </payment>
+        <!-- For email sending -->
+        <template>
+            <email>
+                <epaybg_email_idn_template translate="label" module="epaybg">
+                    <label>ePay Bg IDN</label>
+                    <file>sales/epay_idn_message.html</file>
+                    <type>html</type>
+                </epaybg_email_idn_template>
+                <epaybg_connection_error translate="label" module="epaybg">
+                    <label>ePay Connection Error</label>
+                    <file>epaybg/connection_error.html</file>
+                    <type>html</type>
+                </epaybg_connection_error>
+                <epaybg_api_error translate="label" module="epaybg">
+                    <label>ePay Api Error</label>
+                    <file>epaybg/api_error.html</file>
+                    <type>html</type>
+                </epaybg_api_error>
+            </email>
+        </template>
+        <!-- For email sending -->
+    </global>
+    <frontend>
+	    <routers>
+	        <epaybg>
+	            <use>standard</use>
+	            <args>
+	                <module>CeckosLab_Epaybg</module>
+	                <frontName>epaybg</frontName>
+	            </args>
+	        </epaybg>
+	    </routers>
+        <translate>
+            <modules>
+                <CeckosLab_Epaybg>
+                    <files>
+                        <default>CeckosLab_Epaybg.csv</default>
+                    </files>
+                </CeckosLab_Epaybg>
+            </modules>
+        </translate>
+		<layout>
+			<updates>
+				<epaybg>
+					<file>epaybg.xml</file>
+				</epaybg>
+			</updates>
+		</layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <CeckosLab_Epaybg>
+                    <files>
+                        <default>CeckosLab_Epaybg.csv</default>
+                    </files>
+                </CeckosLab_Epaybg>
+            </modules>
+        </translate>
+		<acl>
+		    <resources>
+		        <admin>
+		            <children>
+		                <system>
+		                    <children>
+		                        <config>
+		                            <children>
+		                                <epaybg translate="title" module="epaybg">
+		                                    <title>ePay Bg Settings</title>
+		                                </epaybg>
+		                            </children>
+		                        </config>
+		                    </children>
+		                </system>
+		            </children>
+		        </admin>
+		    </resources>
+		</acl>
+		<layout>
+			<updates>
+				<epaybg>
+					<file>epaybg.xml</file>
+				</epaybg>
+			</updates>
+		</layout>
+    </adminhtml>
+	<default>
+		<payment>
+			<epaybg>
+				<group>epaybg</group>
+				<active>0</active>
+				<order_status>pending</order_status>
+                <model>epaybg/epaybg</model>
+                <title>ePay Bg - Standard (Micro Bill)</title>
+                <allowspecific>0</allowspecific>
+			</epaybg>
+			<epaybg_easypaybpay>
+				<group>epaybg_easypaybpay</group>
+				<active>0</active>
+				<order_status>pending</order_status>
+                <model>epaybg/easypaybpay</model>
+                <title>ePay Bg - EasyPay and B-Pay</title>
+                <allowspecific>0</allowspecific>
+			</epaybg_easypaybpay>
+			<epaybg_cc>
+				<group>epaybg_cc</group>
+				<active>0</active>
+				<order_status>pending</order_status>
+                <model>epaybg/epaybgcc</model>
+                <title>ePay Bg - Credit Card</title>
+                <allowspecific>0</allowspecific>
+			</epaybg_cc>
+		</payment>
+	</default>
+</config>

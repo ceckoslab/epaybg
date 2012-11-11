@@ -1,0 +1,54 @@
+<!--@subject Плащане чрез EasyPay или B-Pay за поръчка # {{var order.getIncrementId()}} @-->
+<!--@styles
+body,td { color:#2f2f2f; font:14px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+    <td align="center" valign="top" style="padding:20px 0 20px 0">
+        <!-- [ header starts here] -->
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+            <tr>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        <!-- [ middle starts here] -->
+            <tr>
+                <td valign="top">
+					<h1 style="font-size:20px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Hello {{var order.getCustomerName()}}</h1>
+					<h1 style="font-size:20px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">You chose payment method from ATM ( B-Pay ) or office of EasyPay for order # {{var order.getIncrementId()}}</h1>
+
+					<p>Please use 10-digits number to finalize the payment.</p>
+					<p>10-digits number: <strong>{{var idn}}</strong></p>
+					<br />
+					<h2 style="font-size:18px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Payment from ATM:</h2>
+						
+					<ol>
+						<li>Read carefully the instructions from official<br />
+							page of ePay.bg: <a href="https://epay.bg/?p=b-pay" target="_blank">https://epay.bg/?p=b-pay</a>
+						</li>
+						<li>Look for ATM from the list ATMs,<br />
+							from that is possible to do the payment: <a href="https://epay.bg/?page=front&p=b-pay_atm_emv" target="_blank">https://epay.bg/?page=front&amp;p=b-pay_atm_emv</a>
+						</li>
+						<li>For trader number use: <strong>60000</strong></li>
+						<li>Enter the 10-digits number: <strong>{{var idn}}</strong></li>
+					</ol>
+					<br />						
+					<h2 style="font-size:18px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Payment from EasyPay office:</h2>
+					
+					<ol>
+						<li>Choose EasyPay office<br />
+							form next page: <a href="http://www.easypay.bg/?p=offices" target="_blank">http://www.easypay.bg/?p=offices</a></li>
+						
+						<li>In the office tell to which trader you must pay and<br />
+							provide 10-digits number: <strong>{{var idn}}</strong></li>
+					</ol>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+</div>
+</body>

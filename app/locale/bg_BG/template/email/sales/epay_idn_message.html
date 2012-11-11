@@ -1,0 +1,54 @@
+<!--@subject Плащане чрез EasyPay или B-Pay за поръчка # {{var order.getIncrementId()}} @-->
+<!--@styles
+body,td { color:#2f2f2f; font:14px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+    <td align="center" valign="top" style="padding:20px 0 20px 0">
+        <!-- [ header starts here] -->
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+            <tr>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        <!-- [ middle starts here] -->
+            <tr>
+                <td valign="top">
+					<h1 style="font-size:20px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Здравей {{var order.getCustomerName()}}</h1>
+					<h1 style="font-size:20px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Вие избрахте начин за плащане от банкомат ( B-Pay ) или офис на EasyPay за поръчка # {{var order.getIncrementId()}}</h1>
+
+					<p>Моля използвайте 10-цифрения номер, за да извършите плащането.</p>
+					<p>Десет цифрен номер: <strong>{{var idn}}</strong></p>
+					<br />
+					<h2 style="font-size:18px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Плащане през бакомат:</h2>
+						
+					<ol>
+						<li>Прочетете внимателно инструкциите от официалната<br />
+							страница на ePay.bg: <a href="https://epay.bg/?p=b-pay" target="_blank">https://epay.bg/?p=b-pay</a>
+						</li>
+						<li>Потърсете банкомат от списъка с банкомати<br />
+							от които е възможно да се извърши плащане: <a href="https://epay.bg/?page=front&p=b-pay_atm_emv" target="_blank">https://epay.bg/?page=front&amp;p=b-pay_atm_emv</a>
+						</li>
+						<li>Въведете за номер на търговеца: <strong>60000</strong></li>
+						<li>Въведете 10-цифрения номер за плащане: <strong>{{var idn}}</strong></li>
+					</ol>
+					<br />						
+					<h2 style="font-size:18px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Плащане от офис на EasyPay:</h2>
+					
+					<ol>
+						<li>Изберете офис на EasyPay от<br />
+							следната стараница: <a href="http://www.easypay.bg/?p=offices" target="_blank">http://www.easypay.bg/?p=offices</a></li>
+						
+						<li>В офиса съобщете към кой търговец иска да заплатите и<br />
+							предоставете 10-цифрения номер: <strong>{{var idn}}</strong></li>
+					</ol>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+</div>
+</body>

@@ -1,0 +1,68 @@
+<?php 
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   CeckosLab
+ * @package    CeckosLab_Epaybg
+ * @copyright  Copyright (c) 2011 Tsvetan Stoychev
+ * @copyright  Copyright (c) 2011  (http://www.ceckoslab.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+	$idnObject = Mage::registry('idnObject');
+	
+	$order = Mage::registry('order');
+	$error = Mage::registry('errorMessage');
+?>
+
+<?php if(!empty($error)) : ?>
+<div class="page-title">
+    <h1><?php echo $this->__('Something went wrogn'); ?></h1>
+</div>
+<p><?php echo $error; ?></p>
+<p><?php echo __('Please contact us to solve the problem!'); ?></p>
+<?php elseif ($idn = $idnObject->getIdn()) : ?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Your order has been received') ?></h1>
+</div>
+<h2 class="sub-title"><?php echo $this->__('You chose to pay from ATM ( B-Pay ) or from office of EasyPay for order # %s', $order->getIncrementId()) ?></h2>
+
+<p><?php echo $this->__('Please use 10-digits number to finalize the payment.') ?></p>
+<p><?php echo $this->__('10-digits number') ?>: <strong><?php echo $idn ?></strong></p>
+<p><?php echo $this->__('In case if you forget the 10-digits number you can find it in your customer profile in out shop in sction EasyPay | B-Pay or in message, that you will receive in you email.') ?></p>
+<br />
+<h2><?php echo $this->__('Payment from ATM')?>:</h2>
+	
+<ol>
+	<li><?php echo $this->__('Read carefully the instructions from official') ?><br />
+		<?php echo $this->__('page of ePay.bg') ?>: <a href="https://epay.bg/?p=b-pay" target="_blank">https://epay.bg/?p=b-pay</a>
+	</li>
+	<li><?php echo $this->__('Look for ATM from the list ATMs') ?><br />
+		<?php echo $this->__('from that is possible to do the payment') ?>: <a href="https://epay.bg/?page=front&p=b-pay_atm_emv" target="_blank">https://epay.bg/?page=front&amp;p=b-pay_atm_emv</a>
+	</li>
+	<li><?php echo $this->__('For trader number use') ?>: <strong>60000</strong></li>	
+	<li><?php echo $this->__('Enter the 10-digits number') ?>: <strong><?php echo $idn ?></strong></li>
+</ol>
+<br />
+<h2><?php echo $this->__('Payment from EasyPay office') ?>:</h2>						
+
+<ol>
+	<li><?php echo $this->__('Choose EasyPay office') ?><br />
+		<?php echo $this->__('form next page') ?>: <a href="http://www.easypay.bg/?p=offices" target="_blank">http://www.easypay.bg/?p=offices</a>
+	</li>
+	<li><?php echo $this->__('In the office tell to which trader you must pay and') ?><br />
+		<?php echo $this->__('provide 10-digits number') ?>: <strong><?php echo $idn ?></strong>
+	</li>
+</ol>
+<?php endif;?>
+<div class="buttons-set">
+    <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+</div>
