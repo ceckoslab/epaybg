@@ -66,6 +66,7 @@ class CeckosLab_Epaybg_StandardController extends Mage_Core_Controller_Front_Act
 			
 	        $client = new Varien_Http_Client($url);
 	        $client->setMethod(Zend_Http_Client::GET);
+            $client->setHeaders(array('accept-encoding'=>'deflate'));
 	        $client->setParameterGet('ENCODED', $encoded);
 	        $client->setParameterGet('CHECKSUM', $checksum);
 	        
