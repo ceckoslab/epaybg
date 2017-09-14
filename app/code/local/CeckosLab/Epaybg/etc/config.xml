@@ -19,7 +19,7 @@
 <config>
 	<modules>
 		<CeckosLab_Epaybg>
-			<version>2.0.2</version>
+			<version>2.0.3</version>
 		</CeckosLab_Epaybg>
 	</modules>
 	<global>
@@ -113,7 +113,7 @@
 		</resources>
         <payment>
             <groups>
-                <epaybg>ePay Bg</epaybg>
+                <epaybg_group>ePay Bg</epaybg_group>
             </groups>
         </payment>
         <!-- For email sending -->
@@ -205,7 +205,7 @@
 	<default>
 		<payment>
 			<epaybg>
-				<group>epaybg</group>
+				<group>epaybg_group</group>
 				<active>0</active>
 				<order_status>pending</order_status>
                 <model>epaybg/epaybg</model>
@@ -213,7 +213,7 @@
                 <allowspecific>0</allowspecific>
 			</epaybg>
 			<epaybg_easypaybpay>
-				<group>epaybg_easypaybpay</group>
+				<group>epaybg_group</group>
 				<active>0</active>
 				<order_status>pending</order_status>
                 <model>epaybg/easypaybpay</model>
@@ -221,7 +221,7 @@
                 <allowspecific>0</allowspecific>
 			</epaybg_easypaybpay>
 			<epaybg_cc>
-				<group>epaybg_cc</group>
+				<group>epaybg_group</group>
 				<active>0</active>
 				<order_status>pending</order_status>
                 <model>epaybg/epaybgcc</model>
