@@ -1,0 +1,15 @@
+{
+    "name": "ceckoslab/epaybg",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Magento  Module",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+        {
+            "name":"Tsvetan Stoychev",
+            "email": "ceckoslab.com"
+        }
+    ]
+}
